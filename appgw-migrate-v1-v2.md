@@ -16,6 +16,9 @@ tags:
 なお、[Application Gateway V1 につきましては、2026 年 4 月 28 日にリタイアすることが決まっております](https://learn.microsoft.com/ja-jp/azure/application-gateway/v1-retirement)。この日以降、ご利用の Application Gateway V1のリソースはすべて停止される見込みとなります。
 つきましては、期日までに計画的に Application Gateway V2 への移行をご実施いただけますよう、何卒お早めにご検討をいただけますと幸いでございます。
 
+
+Application Gateway V2 への移行のガイドは[こちら](https://learn.microsoft.com/ja-jp/azure/application-gateway/migrate-v1-v2)をご参照ください。
+
 <br>
 
 ## 目次
