@@ -24,7 +24,7 @@ Application Gateway V2 への移行のガイドは[こちら](https://learn.micr
 ## 目次
 
 - [移行スクリプトに関するよくあるお問い合わせ](#移行スクリプトに関するよくあるお問い合わせ)
-  - [移行スクリプトを使用してプライベートのフロントエンド IP のみを構成する Application Gateway V2 に移行することは可能ですか？](#mq1)
+  - [移行スクリプトを使用してプライベートのフロントエンド IP のみを構成する Application Gateway V2 に移行することは可能か](#mq1)
   - [移行スクリプトを実行中にサブネット delegation エラーが表示される](#mq2)
   - [プライベート Application Gateway 利用時に PublicIpResourceId は不要か](#mq3)
   - [拡張複製スクリプトと従来スクリプトの違い](#mq4)
@@ -56,7 +56,7 @@ Application Gateway V2 への移行のガイドは[こちら](https://learn.micr
 ## 移行スクリプトに関するよくあるお問い合わせ
 <a id="mq1"></a>
 
-### 移行スクリプトを使用してプライベートのフロントエンド IP のみを構成する Application Gateway V2 に移行することは 可能ですか？
+### 移行スクリプトを使用してプライベートのフロントエンド IP のみを構成する Application Gateway V2 に移行することは可能ですか？
 
 A. はい、可能です。
 Application Gateway V2 のフロントエンド IP アドレスをプライベートのみとする構成は
