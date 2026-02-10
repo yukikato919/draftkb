@@ -174,7 +174,7 @@ A.
 
 ### 移行スクリプト実行中に移行元の Application Gateway V1に対して設定変更や再起動などを行うことは可能でしょうか？
 A.
-移行スクリプト実行中には、移行元の Application Gateway V1 に対して操作を行わないようお願いいたします。公式ドキュメントにも下記の通り記載がございます。
+移行スクリプト実行中には、移行元の Application Gateway V1 に対して操作を行うことは推奨されません。公式ドキュメントにも下記の通り記載がございます。
 
 - [V1 から V2 に移行する - 注意事項](https://learn.microsoft.com/ja-jp/azure/application-gateway/migrate-v1-v2#caveats)
 
