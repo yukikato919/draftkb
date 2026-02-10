@@ -112,7 +112,7 @@ Application Gateway とバックエンド サーバー間を HTTPS で通信し�
 ### 「拡張複製スクリプト」（AzureAppGWClone.ps1）を用いて Application Gateway V1 から V2 へ移行したところ、Application Gateway V1 ではバックエンド設定の証明書設定にて認証証明書が設定されていましたが、Application Gateway V2 では、該当の設定が見当たりません。V1/V2 で同じ設定となっているのでしょうか？
 
 A.
-Application Gateway V1 ではリーフ証明書そのものをバックエンド設定に登録する構成であったのに対して、V2 ではリーフ証明書を発行した認証局のルート証明書を登録する構成に変更になりました。
+Application Gateway V1 では認証証明書そのものをバックエンド設定に登録する構成であったのに対して、V2 では信頼されたルート証明書を登録する構成に変更になりました。
 このため、Application Gateway V1 と V2 では以下の通り証明書検証の動作が異なります。
 
 - [V1 の提供終了に関する FAQ](https://learn.microsoft.com/ja-jp/azure/application-gateway/retirement-faq#how-are-backend-certificate-behaviors-different-between-application-gateway-v1-and-v2-skus-how-should-i-manage-the-migration-with-the-differences-in-behavior-of-backend-certificate-validations-between-v1-and-v2-skus)
