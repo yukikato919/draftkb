@@ -102,7 +102,7 @@ A.
 - HTTPS リスナーで利用する TLS 証明書の取り扱い：<br>
 従来の複製スクリプトで必須であった TLS 証明書の手動指定が不要となりました。拡張複製スクリプトでは既存の V1 環境にアップロードされている TLS 証明書が自動で V2 環境に反映される動作になりました。
  
-- HTTP 設定で利用する、バックエンド接続用の信頼されたルート証明書の取り扱い：<br>
+- HTTP 設定で利用するバックエンド接続用の信頼されたルート証明書の取り扱い：<br>
 Application Gateway とバックエンド サーバー間を HTTPS で通信し、かつ自己署名証明書のように、既知の証明書認証局から発行されていないサーバー証明書をバックエンド側で利用している場合、V2 では HTTP 設定の箇所でルート証明書をアップロードする必要があり、従来の移行スクリプト実行時に明示的に指定する必要がありました。<br>
 先日 Application Gateway V2 とバックエンド サーバー間を HTTPS で通信する構成において、[証明書の検証をスキップさせる機能](https://learn.microsoft.com/ja-jp/azure/application-gateway/configuration-http-settings?tabs=backendhttpsettings#backend-https-validation-settings)が登場しました。拡張複製スクリプトではこの機能に対応しているため、バックエンド用の証明書を手動指定する必要がなくなりました。
 
