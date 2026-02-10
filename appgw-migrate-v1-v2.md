@@ -62,7 +62,7 @@ A. はい、可能です。
 Application Gateway V2 のフロントエンド IP アドレスをプライベートのみとする構成は
 プライベート Application Gateway と呼ばれ、事前に以下の作業を行うことでご利用いただけます。
 
-- 事前にプレビュー機能で  EnableApplicationGatewayNetworkIsolation を有効化する。
+- 事前にサブスクリプションに対してプレビュー機能で  EnableApplicationGatewayNetworkIsolation を有効化する。
 
 - 事前にプライベート Application Gateway (V2) をデプロイするサブネットに Microsoft.Network/applicationGateways の委任設定を追加する。
 
@@ -77,7 +77,7 @@ Application Gateway V2 のフロントエンド IP アドレスをプライベ�
 
 A.
 サブスクリプションに対して EnableApplicationGatewayNetworkIsolation 機能を有効化した状態で V2 を作成する場合、フロントエンド IP アドレスがパブリック IP のみ関連づいているか、プライベート IP のみ関連づいているかを問わず、移行先のサブネットで「Microsoft.Network/applicationGateways」へのサブネット委任の設定が必要となります。<br>
-そのため、移行スクリプト実行前に V2 を作成予定のサブネットに対して事前にサブネットの委任の設定をすることで回避できます。なお、移行元の V1 のサブネットではサブネット委任の設定は必要ございません。
+そのため、移行スクリプト実行前に V2 を作成予定のサブネットに対してサブネットの委任の設定をすることで回避できます。なお、移行元の V1 のサブネットではサブネット委任の設定は必要ございません。
 
 -----
 <a id="mq3"></a>
@@ -95,21 +95,21 @@ A.
 拡張複製スクリプトでは以下の対応が可能となりました。
 
 
-- パブリック IP アドレスの取り扱い
+- パブリック IP アドレスの取り扱い：
 プライベート Application Gateway 環境の移行にあたりパブリック IP アドレスを一時的に付与する必要がなくなりました。
 （従来の複製スクリプトでは作成時に一時的にパブリック IP アドレスを付与、作成後に手動で削除する必要がありました）
  
-- HTTPS リスナーで利用する TLS 証明書の取り扱い
+- HTTPS リスナーで利用する TLS 証明書の取り扱い：
 従来の複製スクリプトで必須であった TLS 証明書の手動指定が不要となりました。拡張複製スクリプトでは既存の V1 環境にアップロードされている TLS 証明書が自動で V2 環境に反映される動作になりました。
  
-- HTTP 設定で利用する、バックエンド接続用の信頼されたルート証明書の取り扱い
+- HTTP 設定で利用する、バックエンド接続用の信頼されたルート証明書の取り扱い：
 Application Gateway とバックエンド サーバー間を HTTPS で通信し、かつ自己署名証明書のように、既知の証明書認証局から発行されていないサーバー証明書をバックエンド側で利用している場合、V2 では HTTP 設定の箇所でルート証明書をアップロードする必要があり、従来の移行スクリプト実行時に明示的に指定する必要がありました。<br>
 先日 Application Gateway V2 とバックエンド サーバー間を HTTPS で通信する構成において、[証明書の検証をスキップさせる機能](https://learn.microsoft.com/ja-jp/azure/application-gateway/configuration-http-settings?tabs=backendhttpsettings#backend-https-validation-settings)が登場しました。拡張複製スクリプトではこの機能に対応しているため、バックエンド用の証明書を手動指定する必要がなくなりました。
 
 -----
 <a id="mq5"></a>
 
-### 「拡張複製スクリプト」（AzureAppGWClone.ps1）を用いて Application Gateway V1 から V2 へ移行したところ、Application Gateway V1 ではバックエンド設定の証明書設定にてリーフ証明書が設定されていましたが、Application Gateway V2 では、該当の設定が見当たりません。V1/V2 で同じ設定となっているのでしょうか？
+### 「拡張複製スクリプト」（AzureAppGWClone.ps1）を用いて Application Gateway V1 から V2 へ移行したところ、Application Gateway V1 ではバックエンド設定の証明書設定にて認証証明書が設定されていましたが、Application Gateway V2 では、該当の設定が見当たりません。V1/V2 で同じ設定となっているのでしょうか？
 
 A.
 Application Gateway V1 ではリーフ証明書そのものをバックエンド設定に登録する構成であったのに対して、V2 ではリーフ証明書を発行した認証局のルート証明書を登録する構成に変更になりました。
@@ -174,7 +174,7 @@ A.
 
 ### 移行スクリプト実行中に移行元の Application Gateway V1に対して設定変更や再起動などを行うことは可能でしょうか？
 A.
-移行スクリプト実行中には、移行元の Application Gateway V1 に対して操作を行わないようお願い申し上げます。公式ドキュメントにも下記の通り記載がございます。
+移行スクリプト実行中には、移行元の Application Gateway V1 に対して操作を行わないようお願いいたします。公式ドキュメントにも下記の通り記載がございます。
 
 - [V1 から V2 に移行する - 注意事項](https://learn.microsoft.com/ja-jp/azure/application-gateway/migrate-v1-v2#caveats)
 
