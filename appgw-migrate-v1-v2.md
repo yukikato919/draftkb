@@ -6,7 +6,7 @@ tags:
   - Application Gateway
 ---
 
-こんにちは。Azure テクニカル サポート チームです。
+こんにちは。Azure テクニカル サポート チームの加藤です。
 
 本記事では、Application Gateway V1 SKU から V2 SKU への移行に関するよくあるお問い合わせについてご紹介します。
 
