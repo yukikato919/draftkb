@@ -24,7 +24,7 @@ Application Gateway V2 への移行のガイドは[こちら](https://learn.micr
 ## 目次
 
 - [移行スクリプトに関するよくあるお問い合わせ](#移行スクリプトに関するよくあるお問い合わせ)
-  - [移行スクリプトを使用してプライベートのフロントエンド IP のみを構成する Application Gateway V2 に移行することは可能か](#mq1)
+  - [移行スクリプトを使用してプライベートのフロントエンド IP のみを構成する Application Gateway V2 に移行可能か](#mq1)
   - [移行スクリプトを実行中にサブネット delegation エラーが表示される](#mq2)
   - [プライベート Application Gateway 利用時に PublicIpResourceId は不要か](#mq3)
   - [拡張複製スクリプトと従来スクリプトの違い](#mq4)
@@ -66,8 +66,6 @@ Application Gateway V2 のフロントエンド IP アドレスをプライベ�
 
 - 事前にプライベート Application Gateway (V2) をデプロイするサブネットに Microsoft.Network/applicationGateways の委任設定を追加する。
 
-<br>
-
 詳細は[こちら](https://learn.microsoft.com/ja-jp/azure/application-gateway/application-gateway-private-deployment?tabs=portal)の公開技術情報をご確認ください。<br> ※ EnableApplicationGatewayNetworkIsolation 機能はお客様に任意で登録いただく機能のため、サブスクリプションの [プレビュー機能] のページに配置されておりますが、プライベート デプロイ機能自体はすでに GA (General Availability)  済みの機能です。
 
 -----
@@ -95,15 +93,15 @@ A.
 拡張複製スクリプトでは以下の対応が可能となりました。
 
 
-- パブリック IP アドレスの取り扱い：<br>
+- パブリック IP アドレスの取り扱い：
 プライベート Application Gateway 環境の移行にあたりパブリック IP アドレスを一時的に付与する必要がなくなりました。
 （従来の複製スクリプトでは作成時に一時的にパブリック IP アドレスを付与、作成後に手動で削除する必要がありました）
- 
-- HTTPS リスナーで利用する TLS 証明書の取り扱い：<br>
+ <p>
+- HTTPS リスナーで利用する TLS 証明書の取り扱い：
 従来の複製スクリプトで必須であった TLS 証明書の手動指定が不要となりました。拡張複製スクリプトでは既存の V1 環境にアップロードされている TLS 証明書が自動で V2 環境に反映される動作になりました。
- 
-- HTTP 設定で利用するバックエンド接続用の信頼されたルート証明書の取り扱い：<br>
-Application Gateway とバックエンド サーバー間を HTTPS で通信し、かつ自己署名証明書のように、既知の証明書認証局から発行されていないサーバー証明書をバックエンド側で利用している場合、V2 では HTTP 設定の箇所でルート証明書をアップロードする必要があり、従来の移行スクリプト実行時に明示的に指定する必要がありました。<br>
+ <p>
+- HTTP 設定で利用するバックエンド接続用の信頼されたルート証明書の取り扱い：
+Application Gateway とバックエンド サーバー間を HTTPS で通信し、かつ自己署名証明書のように、既知の証明書認証局から発行されていないサーバー証明書をバックエンド側で利用している場合、V2 では HTTP 設定の箇所でルート証明書をアップロードする必要があり、従来の移行スクリプト実行時に明示的に指定する必要がありました。
 先日 Application Gateway V2 とバックエンド サーバー間を HTTPS で通信する構成において、[証明書の検証をスキップさせる機能](https://learn.microsoft.com/ja-jp/azure/application-gateway/configuration-http-settings?tabs=backendhttpsettings#backend-https-validation-settings)が登場しました。拡張複製スクリプトではこの機能に対応しているため、バックエンド用の証明書を手動指定する必要がなくなりました。
 
 -----
@@ -210,7 +208,6 @@ A.
  - [V1 から V2 に移行する - Traffic Migrationに関する推奨事項](https://learn.microsoft.com/ja-jp/azure/application-gateway/migrate-v1-v2#traffic-migration-recommendations)
 
 >Standard V1 または WAF V1 ゲートウェイに (A レコードを使って) 関連付けられているフロントエンド IP アドレスを指すカスタム DNS ゾーン (例: contoso.com)。 Standard_V2 アプリケーション ゲートウェイに関連付けられているフロントエンド IP または DNS ラベルを指すように、DNS レコードを更新できます。 DNS レコードに構成されている TTL によっては、すべてのクライアント トラフィックが新しい V2 ゲートウェイに移行するまでに時間がかかる場合があります。
-
 
 なお、DNS 切り替えの際、Application Gateway V1・V2 がともに稼働している状態であれば、トラフィック移行中でも継続して Application Gateway からサービスが提供されますので基本的には通信影響はございません。
 
@@ -333,7 +330,6 @@ V1 と V2 は料金構造そのものが異なるため、単純にインスタ�
  - [料金計算ツール](https://azure.microsoft.com/ja-jp/pricing/calculator/?service=application-gateway)
 
 -----
-<br>
 <br>
 
 以上、Application Gateway V1  SKU から V2 SKU への移行に関するよくあるお問い合わせについてご紹介しました。移行のご参考になれば幸いです。
